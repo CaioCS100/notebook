@@ -7,6 +7,7 @@ namespace :dev do
       show_successful_spinner('Migrating tables to database...') { %x(rails db:migrate) }
       %x(rails dev:create_kinds_of_contacts)
       %x(rails dev:create_contacts)
+      %x(rails dev:create_phones)
     else
       show_error_spinner('Deleting database...', 'you must be using the development environment')
     end
@@ -39,6 +40,23 @@ namespace :dev do
           Kind.create!(
             description: kind
           )
+        end
+      end
+    else
+      show_error_spinner('Error!', 'you must be using the development environment')
+    end
+  end
+
+  desc 'Create some Phones for tests'
+  task create_phones: :environment do
+    if Rails.env.development?
+      show_successful_spinner('Creating Phones...') do
+        Contact.all.each do |contact|
+          Random.rand(5).times do
+            phone = Phone.create!(number: Faker::PhoneNumber.cell_phone, contact_id: contact.id)
+            contact.phones << phone
+            contact.save!
+          end
         end
       end
     else
