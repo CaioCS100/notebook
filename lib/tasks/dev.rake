@@ -8,6 +8,7 @@ namespace :dev do
       %x(rails dev:create_kinds_of_contacts)
       %x(rails dev:create_contacts)
       %x(rails dev:create_phones)
+      %x(rails dev:create_address)
     else
       show_error_spinner('Deleting database...', 'you must be using the development environment')
     end
@@ -57,6 +58,23 @@ namespace :dev do
             contact.phones << phone
             contact.save!
           end
+        end
+      end
+    else
+      show_error_spinner('Error!', 'you must be using the development environment')
+    end
+  end
+
+  desc 'Create some Address for tests'
+  task create_address: :environment do
+    if Rails.env.development?
+      show_successful_spinner('Creating Address...') do
+        Contact.all.each do |contact|
+          Address.create!(
+            street: Faker::Address.street_address,
+            city: Faker::Address.city,
+            contact_id: contact.id
+          )
         end
       end
     else
