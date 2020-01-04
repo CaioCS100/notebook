@@ -53,7 +53,7 @@ namespace :dev do
       show_successful_spinner('Creating Phones...') do
         Contact.all.each do |contact|
           Random.rand(5).times do
-            phone = Phone.create!(number: Faker::PhoneNumber.cell_phone, contact_id: contact.id)
+            phone = Phone.create!(number: Faker::PhoneNumber.cell_phone)
             contact.phones << phone
             contact.save!
           end

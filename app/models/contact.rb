@@ -1,29 +1,11 @@
 class Contact < ApplicationRecord
   belongs_to :kind
   has_many :phones
+  accepts_nested_attributes_for :phones, allow_destroy: true
 
-  def to_br
-    {
-      id: id,
-      name: name,
-      email: email,
-      birthdate: I18n.l(birthdate),
-      kind: {
-        id: kind.id,
-        description: kind.description
-      }
-    }
+  def as_json(options = {})
+    json = super(options)
+    json[:birthdate] = I18n.l(self.birthdate)
+    json
   end
-
-#   def name_author
-#     'Caio Cesar Silva'
-#   end
-
-#   def as_json(options = {})
-#     super({
-#         root: true,
-#         methods: :name_author,
-#         include: {kind: { only: [:id, :description] }}
-#     })
-#   end
 end
