@@ -25,6 +25,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'tty-spinner'
 gem 'pry-rails'
 gem 'rails-i18n', '~> 6.0.0'
+gem 'active_model_serializers', '~> 0.10.0'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
