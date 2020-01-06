@@ -5,12 +5,12 @@ class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
 
-    render json: @contacts, except: [:updated_at, :created_at]
+    render json: @contacts, include: [:address, :phones]
   end
 
   # GET /contacts/1
   def show
-    render json: @contact
+    render json: @contact, include: [:address, :phones]
   end
 
   # POST /contacts
@@ -47,8 +47,7 @@ class ContactsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def contact_params
-    params.require(:contact).permit(:name, :email, :birthdate, :kind_id,
-    phones_attributes: [:id, :number, :_destroy],
-    address_attributes: [:id, :street, :city, :contact_id])
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:name, :email, 
+    :birthdate, :kind])
   end
 end
