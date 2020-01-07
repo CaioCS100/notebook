@@ -9,6 +9,8 @@ class KindsController < ApplicationController
   end
 
   # GET /kinds/1
+  # OR
+  # GET contacts/1/kind
   def show
     render json: @kind
   end
