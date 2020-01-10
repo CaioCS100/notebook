@@ -28,6 +28,7 @@ gem 'rails-i18n', '~> 6.0.0'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'devise_token_auth'
 gem 'devise-i18n'
+gem 'kaminari'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'

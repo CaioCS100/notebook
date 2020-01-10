@@ -91,6 +91,18 @@ GEM
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     jsonapi-renderer (0.2.2)
+    kaminari (1.1.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.1.1)
+      kaminari-activerecord (= 1.1.1)
+      kaminari-core (= 1.1.1)
+    kaminari-actionview (1.1.1)
+      actionview
+      kaminari-core (= 1.1.1)
+    kaminari-activerecord (1.1.1)
+      activerecord
+      kaminari-core (= 1.1.1)
+    kaminari-core (1.1.1)
     loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -187,6 +199,7 @@ DEPENDENCIES
   devise-i18n
   devise_token_auth
   faker
+  kaminari
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 4.1)
